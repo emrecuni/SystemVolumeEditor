@@ -1,0 +1,6 @@
+﻿* Seri porttan mesaj alma yapısını kur
+* Seri porttan aldığın değeri sistem sesine ata
+* Form textini ve ikonunu değiştir(ikona hoparlör gibi bir şey koy)
+* Setup oluştur
+* Arka planda çalışmasını sağla
+* 
