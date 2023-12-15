@@ -3,4 +3,5 @@
 * Form textini ve ikonunu değiştir(ikona hoparlör gibi bir şey koy)
 * Setup oluştur
 * Arka planda çalışmasını sağla
-* 
+* Hakkında sayfası ekle
+* Bağlantısı kopan portları combobox'tan kaldır
