@@ -33,11 +33,12 @@
             this.serialPortVolume = new System.IO.Ports.SerialPort(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.portSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.progressBarAudioVolume = new System.Windows.Forms.ProgressBar();
             this.labelVolume = new System.Windows.Forms.Label();
             this.buttonMute = new System.Windows.Forms.Button();
             this.imageListSound = new System.Windows.Forms.ImageList(this.components);
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timerVolume = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,7 +55,7 @@
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(221, 31);
+            this.menuStrip1.Size = new System.Drawing.Size(251, 31);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -66,9 +67,16 @@
             this.portSelectionToolStripMenuItem.Text = "Port Seçimi";
             this.portSelectionToolStripMenuItem.Click += new System.EventHandler(this.portSelectionToolStripMenuItem_Click);
             // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(100, 27);
+            this.aboutToolStripMenuItem.Text = "Hakkında";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
             // progressBarAudioVolume
             // 
-            this.progressBarAudioVolume.Location = new System.Drawing.Point(76, 59);
+            this.progressBarAudioVolume.Location = new System.Drawing.Point(98, 59);
             this.progressBarAudioVolume.Name = "progressBarAudioVolume";
             this.progressBarAudioVolume.Size = new System.Drawing.Size(119, 23);
             this.progressBarAudioVolume.TabIndex = 7;
@@ -77,7 +85,7 @@
             // 
             this.labelVolume.AutoSize = true;
             this.labelVolume.Font = new System.Drawing.Font("Segoe Script", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.labelVolume.Location = new System.Drawing.Point(12, 102);
+            this.labelVolume.Location = new System.Drawing.Point(34, 102);
             this.labelVolume.Name = "labelVolume";
             this.labelVolume.Size = new System.Drawing.Size(115, 25);
             this.labelVolume.TabIndex = 8;
@@ -89,7 +97,7 @@
             this.buttonMute.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonMute.ImageIndex = 1;
             this.buttonMute.ImageList = this.imageListSound;
-            this.buttonMute.Location = new System.Drawing.Point(12, 50);
+            this.buttonMute.Location = new System.Drawing.Point(34, 50);
             this.buttonMute.Name = "buttonMute";
             this.buttonMute.Size = new System.Drawing.Size(40, 40);
             this.buttonMute.TabIndex = 9;
@@ -103,19 +111,17 @@
             this.imageListSound.Images.SetKeyName(0, "mute_icon.png");
             this.imageListSound.Images.SetKeyName(1, "speaker.png");
             // 
-            // aboutToolStripMenuItem
+            // timerVolume
             // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(100, 27);
-            this.aboutToolStripMenuItem.Text = "Hakkında";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            this.timerVolume.Interval = 1000;
+            this.timerVolume.Tick += new System.EventHandler(this.timerVolume_Tick);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.ForestGreen;
-            this.ClientSize = new System.Drawing.Size(221, 133);
+            this.ClientSize = new System.Drawing.Size(251, 133);
             this.Controls.Add(this.buttonMute);
             this.Controls.Add(this.labelVolume);
             this.Controls.Add(this.progressBarAudioVolume);
@@ -147,6 +153,7 @@
         private System.Windows.Forms.Button buttonMute;
         private System.Windows.Forms.ImageList imageListSound;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.Timer timerVolume;
     }
 }
 

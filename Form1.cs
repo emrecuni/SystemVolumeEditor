@@ -50,6 +50,9 @@ namespace SystemVolumeEditer
                     try
                     {
                         serialPortVolume.Open();
+                        Text = $"{serialPortVolume.PortName} Açık";
+                        timerVolume.Enabled = true;
+                        timerVolume.Start();
                     }
                     catch (Exception)
                     {
@@ -69,6 +72,9 @@ namespace SystemVolumeEditer
             {
                 if (serialPortVolume.BytesToRead > 0)
                 {
+
+                    
+                    //int volume = serialPortVolume.ReadByte();
                     string data = serialPortVolume.ReadExisting();
                     if (buttonMute.ImageIndex == 1) // mute butonuna tıklandıktan sonra alınan veride anlık bir parse edememe sorunu oluyordu
                     {
@@ -132,6 +138,19 @@ namespace SystemVolumeEditer
                     serialPortVolume.Close();
                 else
                     e.Cancel = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ex.message: " + ex.Message + " stacktrace: " + ex.StackTrace, "Closing Error");
+            }
+        }
+
+        private void timerVolume_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                progressBarAudioVolume.Value = int.Parse(defaultPlaybackDevice.Volume.ToString());
+                labelVolume.Text = $"Ses Seviyesi: {defaultPlaybackDevice.Volume}";
             }
             catch (Exception ex)
             {
