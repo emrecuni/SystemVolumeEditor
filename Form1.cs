@@ -28,7 +28,8 @@ namespace SystemVolumeEditer
         {
             try
             {
-              
+                progressBarAudioVolume.Value = int.Parse(defaultPlaybackDevice.Volume.ToString());
+                labelVolume.Text = $"Ses Seviyesi: {defaultPlaybackDevice.Volume}";
             }
             catch (Exception ex)
             {
@@ -69,14 +70,73 @@ namespace SystemVolumeEditer
                 if (serialPortVolume.BytesToRead > 0)
                 {
                     string data = serialPortVolume.ReadExisting();
-                    progressBarAudioVolume.Value = int.Parse(data); 
-                    defaultPlaybackDevice.Volume = int.Parse(data);
+                    if (buttonMute.ImageIndex == 1) // mute butonuna tıklandıktan sonra alınan veride anlık bir parse edememe sorunu oluyordu
+                    {
+                        int.TryParse(data, out int volume);
+                        progressBarAudioVolume.Value = volume;
+                        defaultPlaybackDevice.Volume = volume;
+                        labelVolume.Text = $"Ses Seviyesi: {volume}";
+                    }
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("ex.message: " + ex.Message + " stacktrace: " + ex.StackTrace, "Data Received Error");
             }
-        }        
+        }
+
+        private void buttonMute_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (buttonMute.ImageIndex == 1) // unmute
+                {
+                    defaultPlaybackDevice.Mute(true); // sistem sesi mute edilir
+                    labelVolume.Text = "Sessiz";
+                    progressBarAudioVolume.Value = 0;
+                    buttonMute.ImageIndex = 0; // butonun ikonu mute yapılır
+                }
+                else // mute
+                {
+                    defaultPlaybackDevice.Mute(false); // sistem sesi unmute edilir
+                    labelVolume.Text = $"Ses Seviyesi: {defaultPlaybackDevice.Volume}";
+                    progressBarAudioVolume.Value = int.Parse(defaultPlaybackDevice.Volume.ToString());
+                    buttonMute.ImageIndex = 1; // butonun ikonu unmute yapılır
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ex.message: " + ex.Message + " stacktrace: " + ex.StackTrace, "Mute Error");
+            }
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FormAbout about = new FormAbout();
+                about.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ex.message: " + ex.Message + " stacktrace: " + ex.StackTrace, "About Error");
+            }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                DialogResult warning = MessageBox.Show("Çıkmak İstediğinizden Emin Misiniz?", "UYARI", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                if (warning == DialogResult.Yes)
+                    serialPortVolume.Close();
+                else
+                    e.Cancel = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ex.message: " + ex.Message + " stacktrace: " + ex.StackTrace, "Closing Error");
+            }
+        }
     }
 }

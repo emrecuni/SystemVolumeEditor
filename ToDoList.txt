@@ -1,10 +1,9 @@
-﻿* Seri porttan mesaj alma yapısını kur
-* Seri porttan aldığın değeri sistem sesine ata
-* Form textini ve ikonunu değiştir(ikona hoparlör gibi bir şey koy)
+﻿X Seri porttan mesaj alma yapısını kur X
+X Seri porttan aldığın değeri sistem sesine ata X
+X Form textini ve ikonunu değiştir(ikona hoparlör gibi bir şey koy) X
 * Setup oluştur
 * Arka planda çalışmasını sağla
-* Hakkında sayfası ekle
-* Bağlantısı kopan portları combobox'tan kaldır
-* Menu strip'e hover ekle
-* Uygulama kapatılırken uyarı çıkart ve emin misiniz sorusu sor
-* Uygulama kapatılırken seri portu kapat
+X Hakkında sayfası ekle X
+X Bağlantısı kopan portları combobox'tan kaldır X 
+X Uygulama kapatılırken uyarı çıkart ve emin misiniz sorusu sor X
+X Uygulama kapatılırken seri portu kapat X
