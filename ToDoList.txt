@@ -5,3 +5,6 @@
 * Arka planda çalışmasını sağla
 * Hakkında sayfası ekle
 * Bağlantısı kopan portları combobox'tan kaldır
+* Menu strip'e hover ekle
+* Uygulama kapatılırken uyarı çıkart ve emin misiniz sorusu sor
+* Uygulama kapatılırken seri portu kapat
